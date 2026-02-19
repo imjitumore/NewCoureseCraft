@@ -5,17 +5,19 @@ import Home from "./components/Home";
 import LoginPage from "./components/LoginPage";
 import StudentDashboard from "./components/StudentDashboard";
 import InstructorDashboard from "./components/InstructorDashboard";
+import MyCourses from "./components/MyCourses";
 function App() {
   return (
 
 
     
     <Routes>
-      <Route path="/" element={<Home/>} />
-      <Route path="/register" element={<RegistrationPage />} />
-      {/* <Route path="/login" element={<LoginPage />} /> */}
-      {/* <Route path="/login" element={<StudentDashboard />} /> */}
-      <Route path="/login" element={<InstructorDashboard />} />
+      <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegistrationPage />} />
+        <Route path="/studentDashboard" element={<StudentDashboard />} />
+        <Route path="/instructorDashboard" element={<InstructorDashboard />} />
+        <Route path="/myCourses" element={<MyCourses />} />
     </Routes>
   );
 }

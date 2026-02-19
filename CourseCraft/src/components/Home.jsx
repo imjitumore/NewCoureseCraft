@@ -13,7 +13,7 @@ const Home = () => {
           <nav className="hidden md:flex space-x-8 font-medium">
             <a href="#" className="hover:text-indigo-600 transition">Courses</a>
             <a href="#" className="hover:text-indigo-600 transition">About</a>
-            <Link to={"/login"}><p className="hover:text-indigo-600 transition" >Login</p></Link>
+            <Link to={"/studentDashboard"}><p className="hover:text-indigo-600 transition" >Login</p></Link>
 
             <Link to={"/register"}><p className="hover:text-indigo-600 transition" >Register</p></Link>
            
