@@ -1,34 +1,21 @@
+import DashboardLayout from "../layouts/DashboardLayout";
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 const MyCourses = () => {
-  const navigate = useNavigate();
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-200 via-blue-100 to-purple-200 p-6">
+    <DashboardLayout role="student">
 
-      {/* HEADER */}
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">
-          My Courses
-        </h1>
+      <h2 className="text-2xl font-bold text-gray-800 mb-6">
+        My Courses
+      </h2>
 
-        <button
-          onClick={() => navigate("/student-dashboard")}
-          className="bg-blue-600 text-white px-5 py-2 rounded-xl shadow-md hover:bg-blue-700 transition"
-        >
-          Back to Dashboard
-        </button>
-      </div>
-
-      {/* COURSES GRID */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
         {/* Course Card 1 */}
         <div className="bg-white/60 backdrop-blur-md rounded-3xl shadow-xl p-6 hover:scale-105 transition duration-300">
-          <h2 className="text-xl font-semibold text-gray-800 mb-2">
+          <h3 className="text-lg font-semibold text-gray-800 mb-2">
             MERN Stack Development
-          </h2>
+          </h3>
 
           <p className="text-gray-600 text-sm mb-4">
             Progress: 70%
@@ -45,9 +32,9 @@ const MyCourses = () => {
 
         {/* Course Card 2 */}
         <div className="bg-white/60 backdrop-blur-md rounded-3xl shadow-xl p-6 hover:scale-105 transition duration-300">
-          <h2 className="text-xl font-semibold text-gray-800 mb-2">
+          <h3 className="text-lg font-semibold text-gray-800 mb-2">
             React Advanced Concepts
-          </h2>
+          </h3>
 
           <p className="text-gray-600 text-sm mb-4">
             Progress: 45%
@@ -64,7 +51,7 @@ const MyCourses = () => {
 
       </div>
 
-    </div>
+    </DashboardLayout>
   );
 };
 
