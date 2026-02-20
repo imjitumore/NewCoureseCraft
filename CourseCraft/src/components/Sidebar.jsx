@@ -4,13 +4,9 @@ import React from "react";
 const Sidebar = ({ role }) => {
   return (
     <div className="w-64 bg-white/40 backdrop-blur-lg border-r border-white/30 shadow-xl p-6">
-
-      <h2 className="text-2xl font-bold text-blue-700 mb-8">
-        CourseCraft
-      </h2>
+      <h2 className="text-2xl font-bold text-blue-700 mb-8">CourseCraft</h2>
 
       <nav className="space-y-4">
-
         {/* STUDENT MENU */}
         {role === "student" && (
           <>
@@ -73,6 +69,23 @@ const Sidebar = ({ role }) => {
           </>
         )}
 
+        <div className="flex  items-center mb-6">
+
+          {role === "instructor" && (
+            <NavLink
+              to="/instructor-profile"
+             className={({ isActive }) =>
+                `flex px-4 py-2 rounded-xl transition ${
+                  isActive
+                    ? "bg-blue-600 text-white"
+                    : "text-gray-700 hover:bg-blue-100"
+                }`
+              }
+            >
+              Profile
+            </NavLink>
+          )}
+        </div>
       </nav>
     </div>
   );

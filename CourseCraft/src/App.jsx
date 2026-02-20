@@ -10,6 +10,9 @@ import StudentDashboard from "./pages/StudentDashboard";
 import InstructorDashboard from "./pages/InstructorDashboard";
 import MyCourses from "./pages/MyCourses";
 import CreateCourse from "./pages/CreateCourse";
+import ManageCourse from "./layouts/ManageCourse";
+import InstructorProfile from "./pages/InstructorProfile";
+
 
 function App() {
   return (
@@ -26,6 +29,10 @@ function App() {
 
         <Route path="/instructor-dashboard" element={<InstructorDashboard />} />
         <Route path="/create-course" element={<CreateCourse />} /> 
+
+        <Route path="/manage-course" element={<ManageCourse />} />
+        <Route path="/instructor-profile" element={<InstructorProfile />} />
+
 
       </Routes>
   );

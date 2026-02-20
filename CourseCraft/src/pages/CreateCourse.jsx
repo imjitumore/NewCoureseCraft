@@ -1,7 +1,18 @@
 import DashboardLayout from "../layouts/DashboardLayout";
-import React from "react";
+import React, { useState } from "react";
 
 const CreateCourse = () => {
+  const [thumbnail, setThumbnail] = useState(null);
+  const [preview, setPreview] = useState(null);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setThumbnail(file);
+      setPreview(URL.createObjectURL(file));
+    }
+  };
+
   return (
     <DashboardLayout role="instructor">
 
@@ -13,6 +24,7 @@ const CreateCourse = () => {
 
         <form className="space-y-6">
 
+          {/* Course Title */}
           <div>
             <label className="block text-gray-700 mb-2">
               Course Title
@@ -24,6 +36,7 @@ const CreateCourse = () => {
             />
           </div>
 
+          {/* Course Description */}
           <div>
             <label className="block text-gray-700 mb-2">
               Course Description
@@ -35,6 +48,7 @@ const CreateCourse = () => {
             ></textarea>
           </div>
 
+          {/* Course Price */}
           <div>
             <label className="block text-gray-700 mb-2">
               Course Price
@@ -46,6 +60,34 @@ const CreateCourse = () => {
             />
           </div>
 
+          {/* Thumbnail Upload */}
+          <div>
+            <label className="block text-gray-700 mb-2">
+              Course Thumbnail
+            </label>
+
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="w-full p-3 rounded-xl border bg-white"
+            />
+
+            {preview && (
+              <div className="mt-4">
+                <p className="text-sm text-gray-600 mb-2">
+                  Preview:
+                </p>
+                <img
+                  src={preview}
+                  alt="Thumbnail Preview"
+                  className="w-48 h-32 object-cover rounded-xl shadow"
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Submit Button */}
           <button
             type="submit"
             className="bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition"

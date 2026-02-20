@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
 import React from "react";
 
@@ -42,9 +43,13 @@ const InstructorDashboard = () => {
               <h4 className="font-semibold">MERN Bootcamp</h4>
               <p className="text-sm opacity-80">80 Students Enrolled</p>
             </div>
-            <button className="bg-white text-blue-600 px-4 py-1 rounded-lg hover:bg-gray-100 transition">
+            {/* <button className="bg-white text-blue-600 px-4 py-1 rounded-lg hover:bg-gray-100 transition">
               Manage
-            </button>
+            </button> */}
+
+
+            <Link to={`/manage-course`}><p className="bg-white text-blue-600 px-4 py-1 rounded-lg hover:bg-gray-100 transition">Manage</p></Link>
+
           </div>
 
           <div className="flex justify-between items-center bg-indigo-600 text-white p-4 rounded-2xl">
