@@ -22,7 +22,7 @@ const LoginPage = () => {
       email === "student@test.com" &&
       password === "123456"
     ) {
-      navigate("/student-dashboard");
+      navigate("/home");
     }
     else if (
       role === "instructor" &&

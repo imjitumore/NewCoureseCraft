@@ -12,6 +12,11 @@ import MyCourses from "./pages/MyCourses";
 import CreateCourse from "./pages/CreateCourse";
 import ManageCourse from "./layouts/ManageCourse";
 import InstructorProfile from "./pages/InstructorProfile";
+import CoursePlayer from "./pages/CoursePlayer";
+import Home from "./pages/Home";
+import AllCourses from "./pages/AllCourses";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 
 function App() {
@@ -32,6 +37,16 @@ function App() {
 
         <Route path="/manage-course" element={<ManageCourse />} />
         <Route path="/instructor-profile" element={<InstructorProfile />} />
+
+        <Route path="/course-player/:courseId" element={<CoursePlayer />} />
+
+        <Route path="/home" element={<Home />} />
+
+
+        <Route path="/allcourses" element={<AllCourses />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+
 
 
       </Routes>
