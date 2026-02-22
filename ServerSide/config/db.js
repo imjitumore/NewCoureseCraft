@@ -1,59 +1,13 @@
-console.log("database connected");
-console.log("Server crashed");
+const mongoose = require("mongoose");
 
+mongoose.connect("mongodb://localhost:27017/CourseCraft", {
+    
+})
+.then(() => {
+    console.log("MongoDB connected successfully");
+})
+.catch((err) => {
+    console.error("MongoDB connection error:", err);
+});
 
-
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-
-
-console.log("Server crashed2");
-console.log("Server crashed2");
-console.log("Server crashed2");
-console.log("Server crashed2");
-console.log("Server crashed45354345");
-
-
-
-
-
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("Server crashed");
-console.log("hello sachin");
-
+module.exports = mongoose;
