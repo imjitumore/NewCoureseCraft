@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/CourseCraft", {
-    
-})
-.then(() => {
-    console.log("MongoDB connected successfully");
-})
-.catch((err) => {
-    console.error("MongoDB connection error:", err);
-});
+const connectDB = async () => {
+  try {
+    await mongoose.connect("mongodb://localhost:27017/CourseCraft");
+    console.log("MongoDB Connected");
+  } catch (error) {
+    console.error(error.message);
+    process.exit(1);
+  }
+};
 
-module.exports = mongoose;
+module.exports = connectDB;
