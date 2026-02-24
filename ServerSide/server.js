@@ -17,6 +17,8 @@ app.use(express.json());
 
 app.use("/api/", require("./routes/authRoutes"));
 app.use("/api/", require("./routes/courseRoutes"));
+app.use("/api/", require("./routes/lessonRoutes"));
+app.use("/api/", require("./routes/enrolllementRoutes"));
 
 app.get("/", (req, res) => {
   res.send("API Running...");
