@@ -60,7 +60,7 @@ const Sidebar = ({ role }) => {
             </NavLink>
 
             <NavLink
-              to="/create-course"
+              to="/manage-courses"
               className={({ isActive }) =>
                 `block px-4 py-2 rounded-xl transition ${
                   isActive
@@ -69,7 +69,7 @@ const Sidebar = ({ role }) => {
                 }`
               }
             >
-              Create Course
+              Manage Courses
             </NavLink>
           </>
         )}

@@ -62,7 +62,7 @@ const LoginPage = () => {
             className="w-24 h-80 bg-gradient-to-b from-blue-500 to-indigo-600 rounded-full relative cursor-pointer shadow-inner"
           >
             <div
-              className={`absolute w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center text-sm font-bold text-blue-600 transition-all duration-500 ${
+              className={`absolute w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center text-sm font-bold text-blue-600 transition-all duration-1000 ease-in-out transform hover:scale-110 ${
                 role === "student" ? "top-4 left-4"  : "bottom-4 left-4"
               }`}
             >
@@ -89,7 +89,7 @@ const LoginPage = () => {
               placeholder="Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-3 rounded-xl text-black outline-none"
+              className="w-full p-4 rounded-xl text-black outline-none focus:ring-4 focus:ring-white/50 transition-all duration-300 hover:shadow-lg transform hover:scale-[1.02] focus:scale-[1.02] bg-white/90 backdrop-blur-sm"
             />
 
             <input
@@ -97,12 +97,13 @@ const LoginPage = () => {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 rounded-xl text-black outline-none"
+              className="w-full p-4 rounded-xl text-black outline-none focus:ring-4 focus:ring-white/50 transition-all duration-300 hover:shadow-lg transform hover:scale-[1.02] focus:scale-[1.02] bg-white/90 backdrop-blur-sm"
             />
+            
 
             <button
               type="submit"
-              className="w-full bg-white text-blue-700 font-semibold py-3 rounded-xl hover:bg-gray-100 transition"
+              className="w-full bg-white text-blue-700 font-semibold py-4 rounded-xl hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02] hover:-translate-y-1 focus:scale-[1.02] focus:-translate-y-1"
             >
               Login
             </button>

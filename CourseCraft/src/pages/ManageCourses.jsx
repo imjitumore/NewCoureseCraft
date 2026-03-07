@@ -15,7 +15,6 @@ const ManageCourses = () => {
     description: "",
     price: "",
     discountPrice: "",
-    category: "",
   });
   const [thumbnail, setThumbnail] = useState(null);
   const [preview, setPreview] = useState(null);
@@ -83,7 +82,6 @@ const ManageCourses = () => {
       courseData.append("description", formData.description);
       courseData.append("price", formData.price);
       courseData.append("discountPrice", formData.discountPrice || formData.price);
-      courseData.append("category", formData.category);
       courseData.append("instructor", instructorId);
 
       if (thumbnail) {
@@ -121,7 +119,6 @@ const ManageCourses = () => {
       courseData.append("description", formData.description);
       courseData.append("price", formData.price);
       courseData.append("discountPrice", formData.discountPrice || formData.price);
-      courseData.append("category", formData.category);
 
       if (thumbnail) {
         courseData.append("thumbnail", thumbnail);
@@ -164,7 +161,6 @@ const ManageCourses = () => {
       description: course.description,
       price: course.price,
       discountPrice: course.discountPrice,
-      category: course.category,
     });
     setThumbnail(null);
     setPreview(course.thumbnail);
@@ -177,7 +173,6 @@ const ManageCourses = () => {
       description: "",
       price: "",
       discountPrice: "",
-      category: "",
     });
     setThumbnail(null);
     setPreview(null);
@@ -221,21 +216,6 @@ const ManageCourses = () => {
                   value={formData.title}
                   onChange={handleInputChange}
                   required
-                  className="w-full p-4 rounded-xl border border-gray-300 outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 hover:shadow-md"
-                />
-              </div>
-
-              {/* Category */}
-              <div>
-                <label className="block text-gray-700 mb-2 font-medium">
-                  Category
-                </label>
-                <input
-                  type="text"
-                  name="category"
-                  placeholder="e.g., Web Development, Design"
-                  value={formData.category}
-                  onChange={handleInputChange}
                   className="w-full p-4 rounded-xl border border-gray-300 outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 hover:shadow-md"
                 />
               </div>
@@ -301,14 +281,14 @@ const ManageCourses = () => {
                 type="file"
                 accept="image/*"
                 onChange={handleImageChange}
-                className="w-full p-4 rounded-xl border border-gray-300 bg-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-all duration-300"
+                className="w-full p-3 rounded-xl border border-gray-300 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
               />
 
               {(preview || (editingCourse && editingCourse.thumbnail)) && (
                 <div className="mt-4">
                   <p className="text-sm text-gray-600 mb-2">Preview:</p>
                   <img
-                    src={preview || editingCourse.thumbnail}
+                    src={preview || (editingCourse.thumbnail ? `http://localhost:5000${editingCourse.thumbnail}` : "https://via.placeholder.com/400x200?text=No+Image")}
                     alt="Thumbnail Preview"
                     className="w-48 h-32 object-cover rounded-xl shadow-lg border border-gray-200"
                   />
@@ -371,7 +351,7 @@ const ManageCourses = () => {
                     <div className="flex items-start space-x-4">
                       {course.thumbnail && (
                         <img
-                          src={course.thumbnail}
+                          src={course.thumbnail ? `http://localhost:5000${course.thumbnail}` : "https://via.placeholder.com/400x200?text=No+Image"}
                           alt={course.title}
                           className="w-20 h-20 object-cover rounded-xl shadow-sm border border-gray-200"
                         />
@@ -388,12 +368,6 @@ const ManageCourses = () => {
                             <span className="mr-1">💰</span>
                             ${course.discountPrice || course.price}
                           </span>
-                          {course.category && (
-                            <span className="flex items-center">
-                              <span className="mr-1">🏷️</span>
-                              {course.category}
-                            </span>
-                          )}
                         </div>
                       </div>
                     </div>

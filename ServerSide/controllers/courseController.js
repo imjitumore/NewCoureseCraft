@@ -72,8 +72,8 @@ exports.updateCourse = async (req, res) => {
     }
 
     const course = await Course.findByIdAndUpdate(
-      req.params.id,
-      updateData,
+        req.params.id,
+        updateData,
       { new: true }
     );
 
@@ -94,7 +94,7 @@ exports.updateCourse = async (req, res) => {
 
 exports.deleteCourse = async (req, res) => {
   try {
-    const course = await Course.findByIdAndDelete(req.params.id);
+    const course = await Course.(req.params.ifindByIdAndDeleted);
 
     if (!course) {
       return res.status(404).json({ message: "Course not found" });

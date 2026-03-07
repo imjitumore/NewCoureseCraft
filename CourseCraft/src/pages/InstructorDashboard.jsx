@@ -92,7 +92,7 @@ const InstructorDashboard = () => {
                 </div>
                 <Link to={`/manage-course/${course._id || course.id}`}>
                   <button className="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition">
-                    Manage
+                    Manage Lessons
                   </button>
                 </Link>
               </div>

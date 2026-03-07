@@ -62,7 +62,7 @@ const RegistrationPage = () => {
           >
 
             <div
-              className={`absolute w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center text-sm font-bold text-blue-600 transition-all duration-500 ${
+              className={`absolute w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center text-sm font-bold text-blue-600 transition-all duration-1000 ease-in-out transform hover:scale-110 ${
                 role === "student" ? "top-4" : "bottom-4"
               }`}
             >
@@ -94,7 +94,7 @@ const RegistrationPage = () => {
               placeholder="Full Name"
               required
               onChange={handleChange}
-              className="w-full p-3 rounded-xl text-black outline-none focus:ring-2 focus:ring-white transition"
+              className="w-full p-4 rounded-xl text-black outline-none focus:ring-4 focus:ring-white/50 transition-all duration-300 hover:shadow-lg transform hover:scale-[1.02] focus:scale-[1.02] bg-white/90 backdrop-blur-sm"
             />
 
             <input
@@ -103,7 +103,7 @@ const RegistrationPage = () => {
               placeholder="Email Address"
               required
               onChange={handleChange}
-              className="w-full p-3 rounded-xl text-black outline-none focus:ring-2 focus:ring-white transition"
+              className="w-full p-4 rounded-xl text-black outline-none focus:ring-4 focus:ring-white/50 transition-all duration-300 hover:shadow-lg transform hover:scale-[1.02] focus:scale-[1.02] bg-white/90 backdrop-blur-sm"
             />
 
             <input
@@ -112,7 +112,7 @@ const RegistrationPage = () => {
               placeholder="Password"
               required
               onChange={handleChange}
-              className="w-full p-3 rounded-xl text-black outline-none focus:ring-2 focus:ring-white transition"
+              className="w-full p-4 rounded-xl text-black outline-none focus:ring-4 focus:ring-white/50 transition-all duration-300 hover:shadow-lg transform hover:scale-[1.02] focus:scale-[1.02] bg-white/90 backdrop-blur-sm"
             />
 
             {role === "instructor" && (
@@ -122,13 +122,13 @@ const RegistrationPage = () => {
                 placeholder="Your Expertise (e.g. MERN Stack)"
                 required
                 onChange={handleChange}
-                className="w-full p-3 rounded-xl text-black outline-none focus:ring-2 focus:ring-white transition"
+                className="w-full p-4 rounded-xl text-black outline-none focus:ring-4 focus:ring-white/50 transition-all duration-300 hover:shadow-lg transform hover:scale-[1.02] focus:scale-[1.02] bg-white/90 backdrop-blur-sm"
               />
             )}
 
             <button
               type="submit"
-              className="w-full bg-white text-blue-700 font-semibold py-3 rounded-xl hover:bg-gray-100 hover:scale-[1.02] transition-all duration-300 shadow-lg"
+              className="w-full bg-white text-blue-700 font-semibold py-4 rounded-xl hover:bg-gray-100 hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 focus:scale-[1.02] focus:-translate-y-1"
             >
               Register as {role === "student" ? "Student" : "Instructor"}
             </button>

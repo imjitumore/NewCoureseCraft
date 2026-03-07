@@ -10,7 +10,7 @@ import StudentDashboard from "./pages/StudentDashboard";
 import InstructorDashboard from "./pages/InstructorDashboard";
 import Dashboard from "./pages/Dashboard";
 import MyCourses from "./pages/MyCourses";
-import CreateCourse from "./pages/CreateCourse";
+import ManageCourses from "./pages/ManageCourses";
 import ManageCourse from "./layouts/ManageCourse";
 import InstructorProfile from "./pages/InstructorProfile";
 import CoursePlayer from "./pages/CoursePlayer";
@@ -43,7 +43,7 @@ function App() {
 
         {/* Instructor Routes */}
         <Route path="/instructor-dashboard" element={<InstructorDashboard />} />
-        <Route path="/create-course" element={<CreateCourse />} />
+        <Route path="/manage-courses" element={<ManageCourses />} />
 
         {/* General Dashboard Route */}
         <Route path="/dashboard" element={<Dashboard />} />
