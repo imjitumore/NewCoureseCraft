@@ -12,16 +12,16 @@ const {
 } = require("../controllers/courseController");
 
 /* CREATE */
-router.post("courses/", upload.single("thumbnail"), createCourse);
+router.post("/courses/", upload.single("thumbnail"), createCourse);
 
 /* READ */
-router.get("courses/", getAllCourses);
-router.get("courses/:id", getCourseById);
+router.get("/courses/", getAllCourses);
+router.get("/courses/:id", getCourseById);
 
 /* UPDATE */
-router.put("courses/:id", upload.single("thumbnail"), updateCourse);
+router.put("/courses/:id", upload.single("thumbnail"), updateCourse);
 
 /* DELETE */
-router.delete("courses/:id", deleteCourse);
+router.delete("/courses/:id", deleteCourse);
 
 module.exports = router;

@@ -8,6 +8,7 @@ import RegistrationPage from "./pages/RegistrationPage";
 
 import StudentDashboard from "./pages/StudentDashboard";
 import InstructorDashboard from "./pages/InstructorDashboard";
+import Dashboard from "./pages/Dashboard";
 import MyCourses from "./pages/MyCourses";
 import CreateCourse from "./pages/CreateCourse";
 import ManageCourse from "./layouts/ManageCourse";
@@ -20,6 +21,14 @@ import Contact from "./pages/Contact";
 
 
 function App() {
+
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const isLoggedIn = !!user;
+  const userRole = user?.role;
+
+  console.log("App - User:", userRole, "IsLoggedIn:", isLoggedIn);
+
   return (
      <Routes>
 
@@ -32,10 +41,14 @@ function App() {
         <Route path="/student-dashboard" element={<StudentDashboard />} />
         <Route path="/my-courses" element={<MyCourses />} />
 
+        {/* Instructor Routes */}
         <Route path="/instructor-dashboard" element={<InstructorDashboard />} />
-        <Route path="/create-course" element={<CreateCourse />} /> 
+        <Route path="/create-course" element={<CreateCourse />} />
 
-        <Route path="/manage-course" element={<ManageCourse />} />
+        {/* General Dashboard Route */}
+        <Route path="/dashboard" element={<Dashboard />} />
+
+        <Route path="/manage-course/:courseId" element={<ManageCourse />} />
         <Route path="/instructor-profile" element={<InstructorProfile />} />
 
         <Route path="/course-player/:courseId" element={<CoursePlayer />} />
@@ -43,7 +56,11 @@ function App() {
         <Route path="/home" element={<Home />} />
 
 
-        <Route path="/allcourses" element={<AllCourses />} />
+
+      
+        {isLoggedIn && userRole === "student" && (
+          <Route path="/allcourses" element={<AllCourses />} />
+        )}
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
 

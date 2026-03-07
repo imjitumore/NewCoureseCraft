@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import React from "react";
+import { loginUser } from "../api/authApi";
 
 const LoginPage = () => {
   const [role, setRole] = useState("student");
@@ -13,26 +14,39 @@ const LoginPage = () => {
     setRole(prev => prev === "student" ? "instructor" : "student");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Static Login Logic
-    if (
-      role === "student" &&
-      email === "student@test.com" &&
-      password === "123456"
-    ) {
-      navigate("/home");
-    }
-    else if (
-      role === "instructor" &&
-      email === "instructor@test.com" &&
-      password === "123456"
-    ) {
-      navigate("/instructor-dashboard");
-    }
-    else {
-      alert("Invalid Credentials");
+    try {
+
+      const res = await loginUser({
+        email,
+        password,
+        role
+      });
+
+      console.log(res.data);
+
+      // store user info (backend returns user object)
+      const userData = res.data.user;
+      // ensure we have _id for consistency
+      if (userData && userData.id && !userData._id) {
+        userData._id = userData.id;
+      }
+      localStorage.setItem("user", JSON.stringify(userData));
+
+      // redirect based on role
+      if (role === "student") {
+        navigate("/home");
+      } else {
+        navigate("/instructor-dashboard");
+      }
+
+    } catch (error) {
+
+      console.log(error);
+      alert(error.response?.data?.message || "Login Failed");
+
     }
   };
 
@@ -49,7 +63,7 @@ const LoginPage = () => {
           >
             <div
               className={`absolute w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center text-sm font-bold text-blue-600 transition-all duration-500 ${
-                role === "student" ? "top-4" : "bottom-4"
+                role === "student" ? "top-4 left-4"  : "bottom-4 left-4"
               }`}
             >
               {role === "student" ? "S" : "I"}

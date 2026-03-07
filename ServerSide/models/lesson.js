@@ -13,6 +13,11 @@ const lessonSchema = new mongoose.Schema(
       trim: true,
     },
 
+    duration: {
+      type: String,
+      trim: true,
+    },
+
     videoUrl: {
       type: String,   // Cloudinary secure_url
       required: true,
@@ -21,6 +26,10 @@ const lessonSchema = new mongoose.Schema(
     videoPublicId: {
       type: String,   // Cloudinary public_id (important for deleting video later)
       required: true,
+    },
+
+    thumbnail: {
+      type: String,   // Cloudinary secure_url for thumbnail
     },
 
     order: {

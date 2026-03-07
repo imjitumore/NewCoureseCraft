@@ -1,23 +1,51 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import React from "react";
+import { registerUser } from "../api/authApi";
 
 const RegistrationPage = () => {
+
   const [role, setRole] = useState("student");
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    bio: "",
+  });
+
   const navigate = useNavigate();
 
   const toggleRole = () => {
     setRole((prev) => (prev === "student" ? "instructor" : "student"));
   };
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    alert(
-      `${role === "student" ? "Student" : "Instructor"} Registration Successful (Static Demo)`
-    );
+    try {
 
-    navigate("/login");
+      const payload = {
+        ...formData,
+        role,
+      };
+
+      const res = await registerUser(payload);
+
+      alert(res.data.message || "Registration Successful");
+
+      navigate("/login");
+
+    } catch (error) {
+      alert(error.response?.data?.message || "Registration failed");
+    }
   };
 
   return (
@@ -25,14 +53,14 @@ const RegistrationPage = () => {
 
       <div className="backdrop-blur-lg bg-white/40 border border-white/30 rounded-[40px] p-8 md:p-12 flex flex-col md:flex-row gap-12 items-center shadow-2xl">
 
-        {/* ===== LEFT TOGGLE SECTION ===== */}
+        {/* Toggle Section */}
         <div className="relative flex flex-col items-center">
 
           <div
             onClick={toggleRole}
             className="w-24 h-80 bg-gradient-to-b from-blue-500 to-indigo-600 rounded-full flex items-center justify-center relative cursor-pointer shadow-inner transition-all duration-500 hover:scale-105"
           >
-            {/* Toggle Circle */}
+
             <div
               className={`absolute w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center text-sm font-bold text-blue-600 transition-all duration-500 ${
                 role === "student" ? "top-4" : "bottom-4"
@@ -40,15 +68,16 @@ const RegistrationPage = () => {
             >
               {role === "student" ? "S" : "I"}
             </div>
+
           </div>
 
-          {/* Mode Label */}
           <div className="mt-6 text-center font-semibold text-gray-700 text-lg tracking-wide">
             {role === "student" ? "Student Mode" : "Instructor Mode"}
           </div>
+
         </div>
 
-        {/* ===== RIGHT FORM SECTION ===== */}
+        {/* Form Section */}
         <div className="w-[350px] md:w-[450px] bg-gradient-to-br from-blue-600 to-indigo-700 rounded-[35px] p-8 text-white shadow-xl">
 
           <h2 className="text-3xl font-bold mb-8 tracking-wide">
@@ -61,31 +90,38 @@ const RegistrationPage = () => {
 
             <input
               type="text"
+              name="name"
               placeholder="Full Name"
               required
+              onChange={handleChange}
               className="w-full p-3 rounded-xl text-black outline-none focus:ring-2 focus:ring-white transition"
             />
 
             <input
               type="email"
+              name="email"
               placeholder="Email Address"
               required
+              onChange={handleChange}
               className="w-full p-3 rounded-xl text-black outline-none focus:ring-2 focus:ring-white transition"
             />
 
             <input
               type="password"
+              name="password"
               placeholder="Password"
               required
+              onChange={handleChange}
               className="w-full p-3 rounded-xl text-black outline-none focus:ring-2 focus:ring-white transition"
             />
 
-            {/* Instructor Extra Field */}
             {role === "instructor" && (
               <input
                 type="text"
+                name="bio"
                 placeholder="Your Expertise (e.g. MERN Stack)"
                 required
+                onChange={handleChange}
                 className="w-full p-3 rounded-xl text-black outline-none focus:ring-2 focus:ring-white transition"
               />
             )}
@@ -108,9 +144,11 @@ const RegistrationPage = () => {
             </div>
 
           </form>
+
         </div>
 
       </div>
+
     </div>
   );
 };

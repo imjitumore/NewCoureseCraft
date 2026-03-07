@@ -4,27 +4,19 @@ import React from "react";
 const Topbar = ({ role }) => {
   const navigate = useNavigate();
 
+  const user = JSON.parse(localStorage.getItem("user"))
   return (
+
+
     <div className="bg-white/50 backdrop-blur-md shadow-md p-4 flex justify-end gap-8 items-center">
 
-      <Link to="/home" className="hover:text-indigo-600">
-          Home
-        </Link>
-
-        <Link to="/allcourses" className="hover:text-indigo-600">
-          Courses
-        </Link>
-
-        <Link to="/about" className="hover:text-indigo-600">
-          About us
-        </Link>
-
-        <Link to="/contact" className="hover:text-indigo-600">
-          Contact us
-        </Link>
+        <p className="text-2xl font-bold text-gray-500">Welcome {user.name.toUpperCase()}</p>
 
       <button
-        onClick={() => navigate("/login")}
+        onClick={() => {
+          localStorage.removeItem("user");
+          navigate("/login");
+        }}
         className="bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition"
       >
         Logout

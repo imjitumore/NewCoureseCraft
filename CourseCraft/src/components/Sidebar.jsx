@@ -1,17 +1,22 @@
-import { NavLink } from "react-router-dom";
+import { NavLink ,Link} from "react-router-dom";
 import React from "react";
 
 const Sidebar = ({ role }) => {
   return (
     <div className="w-64 bg-white/40 backdrop-blur-lg border-r border-white/30 shadow-xl p-6">
-      <h2 className="text-2xl font-bold text-blue-700 mb-8">CourseCraft</h2>
+      <Link
+        to="/home"
+        className="text-3xl font-bold text-indigo-600 mb-8 block"
+      >
+       <h2 className="text-2xl font-bold text-blue-700 mb-8">CourseCraft</h2>
+      </Link>
 
       <nav className="space-y-4">
         {/* STUDENT MENU */}
         {role === "student" && (
           <>
             <NavLink
-              to="/student-dashboard"
+              to="/dashboard"
               className={({ isActive }) =>
                 `block px-4 py-2 rounded-xl transition ${
                   isActive
@@ -42,7 +47,7 @@ const Sidebar = ({ role }) => {
         {role === "instructor" && (
           <>
             <NavLink
-              to="/instructor-dashboard"
+              to="/dashboard"
               className={({ isActive }) =>
                 `block px-4 py-2 rounded-xl transition ${
                   isActive
