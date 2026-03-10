@@ -1,4 +1,6 @@
 const User = require("../models/user");
+const Course = require("../models/course");
+const Enrollment = require("../models/enrollment");
 
 exports.registerUser = async (req, res) => {
   try {
@@ -57,6 +59,87 @@ exports.loginUser = async (req, res) => {
       },
     });
 
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+/* ==========================
+   UPDATE PROFILE
+==========================*/
+exports.updateProfile = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const { bio, skills, socialLinks, experience } = req.body;
+
+    const updateData = {};
+    if (bio !== undefined) updateData.bio = bio;
+    if (experience !== undefined) updateData.experience = experience;
+
+    // Parse JSON strings
+    if (skills !== undefined) {
+      updateData.skills = typeof skills === 'string' ? JSON.parse(skills) : skills;
+    }
+    if (socialLinks !== undefined) {
+      updateData.socialLinks = typeof socialLinks === 'string' ? JSON.parse(socialLinks) : socialLinks;
+    }
+
+    // Handle profile image upload
+    if (req.file) {
+      updateData.profileImage = `/uploads/${req.file.filename}`;
+    }
+
+    const user = await User.findByIdAndUpdate(userId, updateData, { new: true });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json({
+      message: "Profile updated successfully",
+      user,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+/* ==========================
+   GET PROFILE WITH STATS
+==========================*/
+exports.getProfile = async (req, res) => {
+  try {
+    const userId = req.params.id;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    let stats = {};
+    if (user.role === "instructor") {
+      // Get courses by instructor
+      const courses = await Course.find({ instructor: userId });
+
+      // Calculate total students
+      const enrollments = await Enrollment.find({ course: { $in: courses.map(c => c._id) } });
+      const totalStudents = enrollments.length;
+
+      // Calculate average rating
+      const avgRating = courses.length > 0 ? courses.reduce((sum, c) => sum + c.rating, 0) / courses.length : 0;
+
+      stats = {
+        totalCourses: courses.length,
+        totalStudents,
+        avgRating: parseFloat(avgRating.toFixed(1)),
+        experience: user.experience || 0,
+      };
+    }
+
+    res.json({
+      user,
+      stats,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

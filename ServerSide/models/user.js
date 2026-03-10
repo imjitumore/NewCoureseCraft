@@ -17,7 +17,17 @@ const userSchema = new mongoose.Schema(
 
     profileImage: { type: String, required: false },
     bio: { type: String, required: false },
+
+    // Additional profile fields for instructors
+    skills: [{ type: String }], // Array of skills
+    socialLinks: {
+      linkedin: { type: String },
+      github: { type: String },
+      website: { type: String },
+    },
+    experience: { type: Number, default: 0 }, // Years of experience
   },
+  { timestamps: true }
 );
 
 /* --------------------------
