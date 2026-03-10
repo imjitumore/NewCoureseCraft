@@ -18,6 +18,8 @@ import Home from "./pages/Home";
 import AllCourses from "./pages/AllCourses";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Cart from "./pages/Cart";
+import { CartProvider } from "./context/CartContext";
 
 
 function App() {
@@ -30,8 +32,6 @@ function App() {
   console.log("App - User:", userRole, "IsLoggedIn:", isLoggedIn);
 
   return (
-
-  ~
      <Routes>
 
         {/* Public Routes */}
@@ -61,7 +61,10 @@ function App() {
 
       
         {isLoggedIn && userRole === "student" && (
-          <Route path="/allcourses" element={<AllCourses />} />
+          <>
+            <Route path="/allcourses" element={<AllCourses />} />
+            <Route path="/cart" element={<Cart />} />
+          </>
         )}
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
@@ -69,6 +72,7 @@ function App() {
 
 
       </Routes>
+    </CartProvider>
   );
 }
 

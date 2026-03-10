@@ -56,3 +56,19 @@ export const updateLesson = (lessonId, formData) => {
 export const deleteLesson = (lessonId) => {
   return axios.delete(`/lessons/${lessonId}`);
 };
+
+// Enrollment API function
+export const enrollCourse = (studentId, courseId) => {
+  return axios.post(`/enrollments`, {
+    studentId,
+    courseId,
+  });
+};
+
+export const getEnrolledCourses = (studentId) => {
+  return axios.get(`/enrollments/${studentId}`);
+};
+
+export const checkEnrollment = (studentId, courseId) => {
+  return axios.get(`/enrollments/${studentId}/${courseId}`);
+};
